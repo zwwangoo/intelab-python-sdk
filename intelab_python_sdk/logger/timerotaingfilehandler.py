@@ -1,7 +1,6 @@
 import os
 import time
 import codecs
-import platform
 import fcntl
 from logging.handlers import TimedRotatingFileHandler
 
@@ -10,10 +9,10 @@ class Lock(object):
 
     def __init__(self, filename):
         self.filename = filename
-        self.path = filename.rsplit('/', 1)[0]
+        self.path, self.lock_file = filename.rsplit('/', 1)
         if not os.path.exists(self.path):
             os.makedirs(self.path)
-        self.handle = open(self.filename, 'w')
+        self.handle = open('{}/.{}'.format(self.path, self.lock_file), 'w')
 
     def acquire(self):
         fcntl.lockf(self.handle, fcntl.LOCK_EX)
@@ -34,7 +33,7 @@ class MultiProcessSafeHandler(TimedRotatingFileHandler):
         TimedRotatingFileHandler.__init__(
             self, filename, when, interval, backup_count, encoding, True, utc)
         self.current_file_name = self.get_new_file_name()
-        self.lock_file = Lock(self.baseFilename + '.lock')
+        self.lock_file = Lock('{}.lock'.format(self.baseFilename))
 
     def shouldRollover(self, record):
         if self.current_file_name != self.get_new_file_name():

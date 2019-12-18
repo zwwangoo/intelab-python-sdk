@@ -81,7 +81,7 @@ class RFC5424LogFormatter(LogFormatter):
             datefmt=self.RFC5424_TIME_FORMAT)
 
 
-def log_init(name, debug=False, log_path=None):
+def log_init(name, debug=None, log_path=None):
     """
     setup root logger
     debug: log message with level DEBUG or higher,
@@ -90,25 +90,29 @@ def log_init(name, debug=False, log_path=None):
     rfc5424_formatter = RFC5424LogFormatter(name)
     log.handlers = []
 
-    if debug:
+    if (debug is None and log_path is None) or debug:
         stdout_handler = logging.StreamHandler(sys.stdout)
         stdout_handler.setFormatter(rfc5424_formatter)
         log.addHandler(stdout_handler)
 
         log.setLevel(logging.DEBUG)
-
     else:
         log.setLevel(logging.INFO)
+        if not debug and log_path is None:
+            log.warning('log_path should not be null')
 
-    log_file = (log_path if log_path else here) + "/info.log"
-    file_log_handler = MultiProcessSafeHandler(log_file, when="MIDNIGHT")
-    file_log_handler.setFormatter(rfc5424_formatter)
-    log.addHandler(file_log_handler)
+    if log_path:
 
-    log_file = (log_path if log_path else here) + "/error.log"
-    file_log_handler_err = MultiProcessSafeHandler(log_file, when="MIDNIGHT")
-    file_log_handler_err.setFormatter(rfc5424_formatter)
-    file_log_handler_err.setLevel(logging.ERROR)
-    log.addHandler(file_log_handler_err)
+        log_file = "{}/{}.info.log".format(log_path, name)
+        file_log_handler = MultiProcessSafeHandler(log_file, when="MIDNIGHT")
+        file_log_handler.setFormatter(rfc5424_formatter)
+        log.addHandler(file_log_handler)
+
+        log_file = "{}/{}.error.log".format(log_path, name)
+        file_log_handler_err = MultiProcessSafeHandler(
+            log_file, when="MIDNIGHT")
+        file_log_handler_err.setFormatter(rfc5424_formatter)
+        file_log_handler_err.setLevel(logging.ERROR)
+        log.addHandler(file_log_handler_err)
 
     return log
