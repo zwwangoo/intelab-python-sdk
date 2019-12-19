@@ -44,3 +44,19 @@ Usage::
 #. error日志输出到指定路径下的 ``error.info.{日期}``
 #. 日志文件每天零点切分
 #. 修复多进程下零点时切分出多个日志文件的Bug
+
+缓存(0.3.0)
+-----------
+
+Usage::
+
+    >>> from intelab_python_sdk.cache import FileSystemCache
+    >>> from datetime import datetime
+    >>> cache = FileSystemCache('.cache')
+    >>> cache.set('12', datetime.now())
+    >>> cache.get('12')
+    datetime.datetime(2019, 12, 19, 12, 16, 1, 511077)
+
+*说明：*
+
+1. 以key为文件名，存储python数据类型
