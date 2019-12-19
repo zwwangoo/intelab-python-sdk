@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='intelab_python_sdk',
-    version='0.3.0',
+    version='0.3.1',
     packages=find_packages(exclude=('tests', 'tests.*')),
     zip_safe=False,
     include_package_data=True,

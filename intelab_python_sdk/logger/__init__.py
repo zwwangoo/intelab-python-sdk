@@ -66,10 +66,11 @@ class RFC5424LogFormatter(LogFormatter):
     """
     formatter for rfc5424 messaging
     """
+
     RFC5424_LOG_FORMAT = (
-        "%(isotime)s %(hostname)s %(process)s %(service_name)s\n"
-        "%(levelname)s %(name)s:%(filename)s:%(lineno)d\n"
-        "Message: %(message)s\n"
+        "%(isotime)s | %(hostname)s | %(process)-6s | %(service_name)s | "
+        "%(levelname)-8s | %(name)s:%(filename)s:%(lineno)d | "
+        "%(message)s"
     )
 
     RFC5424_TIME_FORMAT = None
@@ -95,19 +96,11 @@ def log_init(name, debug=None, log_path=None):
         >>> # 初始化配置
         >>> log = log_init('test', debug=True, log_path='./logs')
         >>> log.info('info')
-        2019-12-16T17:46:41.930061-+08:00 wen-work-pc 25689 test
-        INFO root:<ipython-input-5-6a92ee17c096>:1
-        Message: info
-
+        2019-12-16T17:46:41.930061-+08:00 | wen-work-pc | 25689 | test | INFO    | root:<ipython-input-5-6a92ee17c096>:1 | info
         >>> log.debug('debug')
-        2019-12-16T17:47:31.113047-+08:00 wen-work-pc 25689 test
-        DEBUG root:<ipython-input-6-03b5a4252de9>:1
-        Message: debug
-
+        2019-12-16T17:47:31.113047-+08:00 | wen-work-pc | 25689 | test | DEBUG   | root:<ipython-input-6-03b5a4252de9>:1 | debug
         >>> log.error('error')
-        2019-12-16T17:48:02.338739-+08:00 wen-work-pc 25689 test
-        ERROR root:<ipython-input-7-5bfd94e0c8ba>:1
-        Message: error
+        2019-12-16T17:48:02.338739-+08:00 | wen-work-pc | 25689 | test | ERROR   | root:<ipython-input-7-5bfd94e0c8ba>:1 | error
     """
     rfc5424_formatter = RFC5424LogFormatter(name)
     log.handlers = []
