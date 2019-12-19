@@ -11,7 +11,7 @@ import platform
 if platform.system() != 'Windows':
     from .timerotaingfilehandler import MultiProcessSafeHandler
 else:
-    from logging.handlers import TimedRotatingFileHandler as MultiProcessSafeHandler
+    from logging.handlers import TimedRotatingFileHandler as MultiProcessSafeHandler  # noqa
 
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -82,10 +82,32 @@ class RFC5424LogFormatter(LogFormatter):
 
 
 def log_init(name, debug=None, log_path=None):
-    """
-    setup root logger
-    debug: log message with level DEBUG or higher,
-           add stdout handler to print log to screen
+    """初始化配置logging
+
+    :param debug: log message with level DEBUG or higher,
+      add stdout handler to print log to screen
+    :param log_path: log files path
+    :return: log
+
+    Usage::
+
+        >>> from intelab_python_sdk.logger import log_init
+        >>> # 初始化配置
+        >>> log = log_init('test', debug=True, log_path='./logs')
+        >>> log.info('info')
+        2019-12-16T17:46:41.930061-+08:00 wen-work-pc 25689 test
+        INFO root:<ipython-input-5-6a92ee17c096>:1
+        Message: info
+
+        >>> log.debug('debug')
+        2019-12-16T17:47:31.113047-+08:00 wen-work-pc 25689 test
+        DEBUG root:<ipython-input-6-03b5a4252de9>:1
+        Message: debug
+
+        >>> log.error('error')
+        2019-12-16T17:48:02.338739-+08:00 wen-work-pc 25689 test
+        ERROR root:<ipython-input-7-5bfd94e0c8ba>:1
+        Message: error
     """
     rfc5424_formatter = RFC5424LogFormatter(name)
     log.handlers = []
