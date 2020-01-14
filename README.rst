@@ -8,7 +8,7 @@ intelab-python-sdk
 
     $ pip install intelab-python-sdk
 
-logging 模块(V0.3.0)
+logging 模块(V0.3.4)
 --------------------
 
 日志格式::
@@ -39,6 +39,14 @@ Usage::
 #. 日志文件每天零点切分
 #. 修复多进程下零点时切分出多个日志文件的Bug
 
+*log_init参数说明*
+
+TimedRotatingFileHandler的使用说明：
+
+    If backupCount is > 0, when rollover is done, no more than backupCount
+    files are kept - the oldest ones are deleted.
+
+
 缓存(0.3.0)
 -----------
 
@@ -57,6 +65,13 @@ Usage::
 
 更新历史
 ========
+
+0.3.4
+-----
+
+*更新内容*
+
+- 日志log_init新增使用参数
 
 0.3.1
 -----

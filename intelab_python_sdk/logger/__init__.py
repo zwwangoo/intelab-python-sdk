@@ -37,6 +37,7 @@ class LogFormatter(logging.Formatter):
     """
     log formatter to add isotime, hostname
     """
+
     def __init__(self, service_name, *args, **kwargs):
         self._service_name = service_name
         self._tz_offset = tz_fix()
@@ -82,7 +83,7 @@ class RFC5424LogFormatter(LogFormatter):
             datefmt=self.RFC5424_TIME_FORMAT)
 
 
-def log_init(name, debug=None, log_path=None):
+def log_init(name, debug=None, log_path=None, when='MIDNIGHT', **kwargs):
     """初始化配置logging
 
     :param debug: log message with level DEBUG or higher,
@@ -119,13 +120,14 @@ def log_init(name, debug=None, log_path=None):
     if log_path:
 
         log_file = "{}/{}.info.log".format(log_path, name)
-        file_log_handler = MultiProcessSafeHandler(log_file, when="MIDNIGHT")
+        file_log_handler = MultiProcessSafeHandler(
+            log_file, when=when, **kwargs)
         file_log_handler.setFormatter(rfc5424_formatter)
         log.addHandler(file_log_handler)
 
         log_file = "{}/{}.error.log".format(log_path, name)
         file_log_handler_err = MultiProcessSafeHandler(
-            log_file, when="MIDNIGHT")
+            log_file, when=when, **kwargs)
         file_log_handler_err.setFormatter(rfc5424_formatter)
         file_log_handler_err.setLevel(logging.ERROR)
         log.addHandler(file_log_handler_err)

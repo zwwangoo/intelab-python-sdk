@@ -29,9 +29,9 @@ class Lock(object):
 
 class MultiProcessSafeHandler(TimedRotatingFileHandler):
     def __init__(self, filename, when='h', interval=1,
-                 backup_count=0, encoding=None, utc=False):
+                 backupCount=0, encoding=None, utc=False):
         TimedRotatingFileHandler.__init__(
-            self, filename, when, interval, backup_count, encoding, True, utc)
+            self, filename, when, interval, backupCount, encoding, True, utc)
         self.current_file_name = self.get_new_file_name()
         self.lock_file = Lock('{}.lock'.format(self.baseFilename))
 

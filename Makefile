@@ -1,4 +1,4 @@
-.PHONY: docs init test flake8 clean publish
+.PHONY: docs init test flake8 clean build publish
 init:
 	pip install -U pip
 	pip install -e .
@@ -25,8 +25,10 @@ clean:
 	@find . -name '__pycache__' -print -exec rm -rf {} +
 	@echo 'Done [clean]'
 
-publish:
+build:
 	@pip install 'twine>=1.5.0' wheel
 	@python setup.py sdist bdist_wheel
+
+publish:build
 	@twine upload dist/*
 	@make clean
