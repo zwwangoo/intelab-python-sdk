@@ -30,5 +30,10 @@ build:
 	@python setup.py sdist bdist_wheel
 
 publish:build
-	@twine upload dist/*
+	@pip install -U devpi-client
+	@devpi use http://devpi.ilabservice.cloud
+	@devpi login devuser
+	@devpi use devuser/dev
+	@devpi upload --with-docs --formats bdist_wheel
+	@devpi logoff
 	@make clean
