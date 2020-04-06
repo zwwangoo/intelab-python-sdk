@@ -6,16 +6,28 @@
 intelab-python-sdk
 ==============================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
 安装
 ----
 
 .. code-block:: bash
 
     $ pip install intelab-python-sdk
+
+邮箱模块(V0.3.5)
+----------------
+
+对简单的邮件发送进行封装
+
+.. warning::
+    目前仅支持 @163.com、@qq.com、@ilabservice.com
+
+Usage::
+
+    >>> from intelab_python_sdk.email import EMailMessage
+    >>> email = EMailMessage('w_angzhiwen@163.com', '发送者', 'xxxxx')  # 'xxxx' 用户密码
+    >>> msg = email.create(['zw.wang@ilabservice.com'], '你好，我是机器人', '无主题')  # 创建邮件内容
+    >>> msg = email.send(['zw.wang@ilabservice.com'], msg)  # 发送
+
 
 logging 模块(V0.3.0)
 --------------------
@@ -44,8 +56,8 @@ Usage::
 #. 日志文件每天零点切分
 #. 修复多进程下零点时切分出多个日志文件的Bug
 
-缓存(0.3.0)
------------
+缓存(V0.3.0)
+------------
 
 Usage::
 
@@ -60,6 +72,30 @@ Usage::
 
 1. 以key为文件名，存储python数据类型
 
+更新历史
+========
+
+0.3.5
+-----
+
+*更新内容*
+
+- 新增utils.get_host_ip()
+- 新增email，对简单的发送邮件进行封装
+
+0.3.4
+-----
+
+*更新内容*
+
+- 日志log_init新增使用参数
+
+0.3.1
+-----
+
+*更新内容*
+
+- 日志打印在一行，使用 `|` 区分。
 
 API
 ===
@@ -69,3 +105,4 @@ API
 
     logger
     cache
+    email
