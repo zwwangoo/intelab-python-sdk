@@ -21,7 +21,7 @@ class FileSystemCache(object):
     def __init__(self, cache_dir):
         self.base_dir = cache_dir
         if not os.path.exists(self.base_dir):
-            os.mkdir(self.base_dir)
+            os.makedirs(self.base_dir)
 
     def _get_filename(self, key):
         return os.path.join(self.base_dir, key)
