@@ -13,6 +13,20 @@ intelab-python-sdk
 
     $ pip install intelab-python-sdk
 
+钉钉群机器人信息发送(V0.4.0)
+-----------------------------
+钉钉机器人是钉钉群的一个高级扩展功能， 目前自定义机器人支持文本（text）、链接（link）
+
+`官方文档参考 <https://ding-doc.dingtalk.com/doc#/serverapi2/qf2nxq>`__
+
+Usage::
+
+    >>> from intelab_python_sdk.dingtalk import DingTalkMessage
+    >>> dingtalk = DingTalkMessage(webhook, secret)
+    >>> dingtalk.send_text('这是文本信息', mobiles=['15131601294'], at_all=False)  # mobiles是at群中的人(手机号),at_all为True是at全体
+    >>> dingtalk.send_link('这是标题', '这是内容', 'https://www.baidu.com')
+
+
 邮箱模块(V0.3.5)
 ----------------
 
@@ -75,6 +89,13 @@ Usage::
 更新历史
 ========
 
+0.4.0
+-----
+
+*更新内容*
+
+- 新增对钉钉群机器人消息推送的接口封装，目前支持文本信息和链接
+
 0.3.5
 -----
 
@@ -106,3 +127,4 @@ API
     logger
     cache
     email
+    dingtalk
