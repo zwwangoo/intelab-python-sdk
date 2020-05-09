@@ -20,7 +20,7 @@ class DingTalkMessage(object):
 
     headers = {"Content-Type": "application/json;charset=utf-8"}
 
-    def __init__(self, webhook, secret, pc_slide=True):
+    def __init__(self, webhook, secret=None, pc_slide=True):
 
         self.webhook = webhook
         self.pc_slide = pc_slide
