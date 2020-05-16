@@ -106,11 +106,11 @@ def log_init(name, debug=None, log_path=None, when='MIDNIGHT', **kwargs):
     rfc5424_formatter = RFC5424LogFormatter(name)
     log.handlers = []
 
-    if (debug is None and log_path is None) or debug:
-        stdout_handler = logging.StreamHandler(sys.stdout)
-        stdout_handler.setFormatter(rfc5424_formatter)
-        log.addHandler(stdout_handler)
+    stdout_handler = logging.StreamHandler(sys.stdout)
+    stdout_handler.setFormatter(rfc5424_formatter)
+    log.addHandler(stdout_handler)
 
+    if (debug is None and log_path is None) or debug:
         log.setLevel(logging.DEBUG)
     else:
         log.setLevel(logging.INFO)
