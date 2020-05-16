@@ -28,6 +28,7 @@ clean:
 build:
 	@pip install 'twine>=1.5.0' wheel
 	@python setup.py sdist bdist_wheel
+	@twine uplad dist/*
 
 publish:build
 	@pip install -U devpi-client
