@@ -72,6 +72,33 @@ class DingTalkMessage(object):
         log.debug('link类型：%s' % msg_dict)
         return self._send(msg_dict)
 
+    def send_markdown(self, title, text, mobiles=None, at_all=False):
+        """ markdown
+
+        :param title: 消息标题
+        :param text: 消息内容。支持简单的md语法。
+        :param: mobiles:
+        :param at_all:
+        :return:
+        """
+        if mobiles is None:
+            mobiles = []
+
+        msg_dict = {
+            "msgtype": "markdown",
+            "markdown": {
+                "title": title,
+                "text": text,
+            },
+            "at": {
+                "atMobiles": mobiles,
+                "isAtAll": at_all
+            }
+        }
+        return self._send(msg_dict)
+
+
+
     def _update_webhook(self):
         """
         钉钉群自定义机器人安全设置加签时，签名中的时间戳与请求时不能超过一个小时，
@@ -108,7 +135,9 @@ class DingTalkMessage(object):
                              headers=self.headers)
             if 'errcode' in res and res['errcode'] == 0:
                 log.info('dingtalk message sent is successful.')
+                return True
             else:
                 raise ValueError(res)
         except Exception as e:
             log.error("dingtalk message sent is unsuccessful!!!\n %s", e)
+        return False

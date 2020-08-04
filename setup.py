@@ -7,7 +7,7 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 setup(
     name='intelab_python_sdk',
-    version='0.4.2',
+    version='0.4.3',
     long_description=readme,
     long_description_content_type='text/x-rst',
     author='iLabService',
