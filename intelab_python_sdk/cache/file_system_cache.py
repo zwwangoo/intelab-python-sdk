@@ -15,6 +15,7 @@ class FileSystemCache(object):
         >>> cache.set('12', datetime.now())
         >>> cache.get('12')
         datetime.datetime(2019, 12, 19, 12, 16, 1, 511077)
+        >>> cache.delete('12')
 
     """
 
@@ -39,3 +40,8 @@ class FileSystemCache(object):
         filename = self._get_filename(key)
         with open(filename, 'wb') as f:
             pickle.dump(value, f, pickle.HIGHEST_PROTOCOL)
+
+    def delete(self, key):
+        filename = self._get_filename(key)
+        if os.path.isfile(filename):
+            os.remove(filename)
