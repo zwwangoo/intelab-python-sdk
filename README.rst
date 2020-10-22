@@ -20,6 +20,7 @@ Usage::
     >>> dingtalk = DingTalkMessage(webhook, secret)
     >>> dingtalk.send_text('这是文本信息', mobiles=['15131601294'], at_all=False)  # mobiles是at群中的人(手机号),at_all为True是at全体
     >>> dingtalk.send_link('这是标题', '这是内容', 'https://www.baidu.com')
+    >>> dingtalk.send_markdown('这是标题', '# 这是内容 \n> 这是引用\n [百度](https://baidu.com)')
 
 邮箱模块(V0.3.5)
 ----------------
@@ -83,6 +84,9 @@ Usage::
     >>> cache.set('12', datetime.now())
     >>> cache.get('12')
     datetime.datetime(2019, 12, 19, 12, 16, 1, 511077)
+    >>> list(cache.keys())
+    ['12']
+    >>> cache.delete('12')
 
 *说明：*
 

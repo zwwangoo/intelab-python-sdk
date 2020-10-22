@@ -15,7 +15,15 @@ from intelab_python_sdk.utils import do_request
 
 
 class DingTalkMessage(object):
-    """钉钉机器人消息推送
+    """ 钉钉机器人消息推送
+
+    Usage::
+        >>> from intelab_python_sdk.dingtalk import DingTalkMessage
+        >>> dingtalk = DingTalkMessage(webhook, secret)
+        >>> dingtalk.send_text('这是文本信息', mobiles=['15131601294'], at_all=False)  # mobiles是at群中的人(手机号),at_all为True是at全体
+        >>> dingtalk.send_link('这是标题', '这是内容', 'https://www.baidu.com')
+        >>> dingtalk.send_markdown('这是标题', '# 这是内容 \n> 这是引用\n [百度](https://baidu.com)')
+
     """
 
     headers = {"Content-Type": "application/json;charset=utf-8"}

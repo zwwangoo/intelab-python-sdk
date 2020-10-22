@@ -7,11 +7,12 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 setup(
     name='intelab_python_sdk',
-    version='0.4.4',
+    version='0.4.5',
+    url='https://github.com/zwwangoo/intelab-python-sdk',
     long_description=readme,
     long_description_content_type='text/x-rst',
-    author='iLabService',
-    author_email='ils@iLabService.com',
+    author='zwwangoo',
+    author_email='w_angzhiwen@163.com',
     packages=find_packages(exclude=('tests', 'tests.*')),
     zip_safe=False,
     include_package_data=True,

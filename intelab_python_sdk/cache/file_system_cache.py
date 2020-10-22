@@ -15,6 +15,8 @@ class FileSystemCache(object):
         >>> cache.set('12', datetime.now())
         >>> cache.get('12')
         datetime.datetime(2019, 12, 19, 12, 16, 1, 511077)
+        >>> list(cache.keys())
+        ['12']
         >>> cache.delete('12')
 
     """
@@ -27,13 +29,16 @@ class FileSystemCache(object):
     def _get_filename(self, key):
         return os.path.join(self.base_dir, key)
 
-    def get(self, key):
+    def get(self, key, default=None):
         filename = self._get_filename(key)
         try:
             with open(filename, 'rb') as f:
                 value = pickle.load(f)
         except (IOError, OSError, pickle.PickleError):
             value = None
+        if value is None and default is not None:
+            value = default
+
         return value
 
     def set(self, key, value):
@@ -45,3 +50,11 @@ class FileSystemCache(object):
         filename = self._get_filename(key)
         if os.path.isfile(filename):
             os.remove(filename)
+
+    def keys(self):
+        keys = []
+        for root, dirs, files in os.walk(self.base_dir, topdown=False):
+            for file in files:
+                keys.append(os.path.split(file)[-1])
+
+        return iter(keys)
