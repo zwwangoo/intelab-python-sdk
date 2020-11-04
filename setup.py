@@ -7,7 +7,7 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 setup(
     name='intelab_python_sdk',
-    version='0.4.5',
+    version='0.5.0',
     url='https://github.com/zwwangoo/intelab-python-sdk',
     long_description=readme,
     long_description_content_type='text/x-rst',
@@ -21,5 +21,11 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
-    ]
+    ],
+    entry_points={
+        'console_scripts': [
+            'intelab_python_sdk = intelab_python_sdk.helper.cpu:run_print'
+        ]
+    }
+
 )

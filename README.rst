@@ -8,6 +8,17 @@ intelab-python-sdk
 
     $ pip install intelab-python-sdk
 
+CPU资源监控脚本(V0.5.0)
+-----------------------
+
+协助自己在服务器端监控进程的使用资源情况。每一秒打印一次。
+
+Usag::
+    $ intelab_python_sdk ffmpeg
+    PID    CPU    MEM    MCPU
+    2243   0.1    0.1    0.1    intelab_python_sdk ffmpeg
+
+
 钉钉群机器人信息发送(V0.4.0)
 ----------------------------
 钉钉机器人是钉钉群的一个高级扩展功能， 目前自定义机器人支持文本（text）、链接（link）
