@@ -18,6 +18,8 @@ docs:
 clean:
 	@echo 'removing...'
 	@find . -name 'dist' -print -exec rm -rf {} +
+	@find . -name 'build' -print -exec rm -rf {} +
+	@find . -name '.cache' -print -exec rm -rf {} +
 	@find . -name '.eggs' -print -exec rm -rf {} +
 	@find . -name '*.pyc' -print -exec rm -f {} +
 	@find . -name '*.pyo' -print -exec rm -f {} +
@@ -29,12 +31,4 @@ build:
 	@pip install 'twine>=1.5.0' wheel
 	@python setup.py sdist bdist_wheel
 	@twine upload dist/*
-
-publish:build
-	@pip install -U devpi-client
-	@devpi use http://devpi.ilabservice.cloud
-	@devpi login devuser
-	@devpi use devuser/dev
-	@devpi upload --with-docs --formats bdist_wheel
-	@devpi logoff
 	@make clean
