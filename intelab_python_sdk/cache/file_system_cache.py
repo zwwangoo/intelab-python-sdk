@@ -34,7 +34,7 @@ class FileSystemCache(object):
         try:
             with open(filename, 'rb') as f:
                 value = pickle.load(f)
-        except (IOError, OSError, pickle.PickleError):
+        except (IOError, OSError, EOFError, pickle.PickleError):
             value = None
         if value is None and default is not None:
             value = default
