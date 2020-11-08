@@ -8,6 +8,22 @@ intelab-python-sdk
 
     $ pip install intelab-python-sdk
 
+FFmpeg常用工具(V0.6.0)
+---------------------
+
+python运行ffmpeg命令执执行常用的视频处理命令，依赖系统安装的ffmpeg。
+
+Linux::
+    sudo apt install ffmpeg
+
+功能：
+
+- 视频流分片录制--`ffmpeg_record.py`
+- 拼接多个视频文件--`ffmpeg_concat.py`
+- 获取流地址的当前一帧--`ffmpeg_capture.py`
+- mp4转mp3--`ffmpeg_mp4tomp3.py`
+- 视频裁剪--`ffmpeg_prune.py`
+
 CPU资源监控脚本(V0.5.0)
 -----------------------
 
@@ -105,6 +121,24 @@ Usage::
 
 更新历史
 ========
+
+0.6.0
+-----
+
+*更新内容*
+
+- 视频流分片录制
+- 拼接多个视频文件
+- 获取流地址的当前一帧
+- mp4转mp3
+- 视频裁剪
+
+0.5.0
+-----
+
+*更新内容*
+
+- 新增CPU资源监控脚本
 
 0.4.0
 -----
