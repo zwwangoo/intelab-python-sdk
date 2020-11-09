@@ -9,7 +9,7 @@ intelab-python-sdk
     $ pip install intelab-python-sdk
 
 FFmpeg常用工具(V0.6.0)
----------------------
+------------------------
 
 python运行ffmpeg命令执执行常用的视频处理命令，依赖系统安装的ffmpeg。
 
