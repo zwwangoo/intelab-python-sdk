@@ -33,7 +33,7 @@ class FfmpegRecordThread(threading.Thread):
             '-v info '
             '-rtbufsize 1m '
             '-rw_timeout {timeout} '                  # 超时断开连接，设定是5s
-            '-i {stream_url} '                        # 输入视频文件或流等其他
+            '-i "{stream_url}" '                        # 输入视频文件或流等其他
             '-movflags faststart+frag_keyframe '      # 使mp4支持渐进式下载
             '-c:v copy '                              # 原始编解码数据必须被拷贝
             '-c:a copy '                              # 设定声音编码，降低CPU使用
@@ -42,11 +42,11 @@ class FfmpegRecordThread(threading.Thread):
             '-strftime 1 '                            # 设置切片名为生成切片的时间点
             '-segment_time {segment_time} '           # 流切分时长
             '-reset_timestamps 1 '                    # 每个切片都重新初始化时间戳
-            '-segment_list {file_name_out_list} '     # 切片列表主文件名，输入是在文件写入完成之后
+            '-segment_list "{file_name_out_list}" '     # 切片列表主文件名，输入是在文件写入完成之后
             '-segment_list_size 10 '                  # 列表文件长度
-            '-segment_list_entry_prefix {out_path} '  # 写文件列表时写入每个切片路径的前置路径
+            '-segment_list_entry_prefix "{out_path}" '  # 写文件列表时写入每个切片路径的前置路径
 
-            '{out_file} '                             # 输出文件名
+            '"{out_file}" '                             # 输出文件名
         ).format(timeout=timeout,
                  stream_url=self.stream_url,
                  segment_time=video_duration,
