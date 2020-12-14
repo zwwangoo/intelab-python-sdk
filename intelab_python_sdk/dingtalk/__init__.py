@@ -6,6 +6,7 @@ import hashlib
 import hmac
 
 try:
+    import urllib.parse
     quote_plus = urllib.parse.quote_plus
 except AttributeError:
     quote_plus = urllib.quote_plus
