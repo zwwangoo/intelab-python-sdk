@@ -1,4 +1,5 @@
 import os
+import re
 import threading
 import subprocess
 
@@ -66,9 +67,10 @@ class FfmpegRecordThread(threading.Thread):
 
         os.makedirs(self.out_file_dir, exist_ok=True)
         self.ffmpeg_proc = None
+        self.video_resolution = None
 
     def run(self):
-        log.info(self.shell_cmd_mp4)
+        log.debug(self.shell_cmd_mp4)
         self.ffmpeg_proc = subprocess.Popen(
             self.shell_cmd_mp4, shell=True,
             close_fds=True,
@@ -81,13 +83,12 @@ class FfmpegRecordThread(threading.Thread):
         while return_code is None:
             # 这里会阻塞,所以不用获取所有的日志才返回，获取81个字节就可以返回了！
             line = self.ffmpeg_proc.stdout.readline(81)
-            # log.info(line)
             log_buffer += line.decode()
             # 换行打印日志
             if r'\n' in str(line) or r'\r' in str(line):
                 if 'Packet mismatch' in log_buffer:
                     try:  # 发送退出信号，等待1s中
-                        self.ffmpeg_proc.communicate(input='q'.encode(), timeout=1)
+                        self.ffmpeg_proc.communicate(input='q'.encode(), timeout=2)
                     except Exception as e:
                         log.debug(e)
                         break
@@ -98,6 +99,12 @@ class FfmpegRecordThread(threading.Thread):
                 else:
                     log_buffer = ''.join(log_buffer)
                     stdout = ''
+
+                # 通过日志获取分辨率
+                resolution = re.findall(r'(\d{3,4}x\d{3,4}),', log_buffer)
+                if resolution:
+                    self.video_resolution = resolution[0]
+
                 log.debug('%s:%s', self.name, log_buffer.strip())
                 log_buffer = stdout
 
