@@ -22,6 +22,11 @@ def capture(stream_url, output_jpg, timeout=10, type='jpg'):
         '-vframes 1 '
         '{}'
     ).format(timeout * 1000 * 1000, stream_url, _f, output_jpg)
-    run_shell(shell_cmd, name='ffmpeg_capture')
+
+    # 尝试三次获取截图
+    for _ in range(3):
+        error_log = run_shell(shell_cmd, name='ffmpeg_capture')
+        if not error_log:
+            break
 
     return output_jpg
