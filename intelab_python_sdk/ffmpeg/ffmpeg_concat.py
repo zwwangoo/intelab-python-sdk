@@ -26,13 +26,16 @@ def concat(file_list, output, removed=False):
 
         error_log = run_shell(concat_shell)
         if error_log:
+            error_files = []
             for file_name in file_list:
                 if file_name in error_log:
                     os.remove(file_name)
+                    error_files.append(file_name)
 
             # TODO 合并的视频文件音频问题
-            sub_file_list = [file_name for file_name in file_list if file_name not in error_log]
-            return concat(sub_file_list, output, removed=True)
+            if error_files:
+                sub_file_list = [file_name for file_name in file_list if file_name not in error_log]
+                return concat(sub_file_list, output, removed=True)
 
         if os.path.isfile(file_name_list):
             os.remove(file_name_list)
