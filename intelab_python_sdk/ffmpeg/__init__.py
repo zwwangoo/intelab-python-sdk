@@ -41,9 +41,9 @@ def run_shell(cmd, name='ffmpeg'):
 
         if r'\n' in str(line):
             if 'Impossible to open' in log_buffer:
-                error_log = log_buffer
+                error_log += log_buffer
             if 'left block unavailable' in log_buffer:
-                error_log = log_buffer
+                error_log += log_buffer
             log.debug('%s:%s', name, log_buffer.strip())
             log_buffer = ''
 
@@ -51,13 +51,13 @@ def run_shell(cmd, name='ffmpeg'):
 
     if log_buffer:
         if 'Impossible to open' in log_buffer:
-            error_log = log_buffer
+            error_log += log_buffer
         log.debug('%s:%s', name, log_buffer.strip())
     return error_log
 
 
 def _print_log(name, log_buffer, error_log):
     if 'Impossible to open' in log_buffer:
-        error_log = log_buffer
+        error_log += log_buffer
     log.debug('%s:%s', name, log_buffer.strip())
     return error_log
