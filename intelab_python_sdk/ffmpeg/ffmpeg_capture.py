@@ -1,4 +1,5 @@
 import os
+import time
 
 from . import run_shell
 
@@ -34,6 +35,7 @@ def capture(stream_url, output_jpg, timeout=10, type='jpg'):
         if not error_log:
             result = True
             break
+        time.sleep(1)
 
     if not result:
         # 截图时出现错误日志，这里将会删除无效的图片
