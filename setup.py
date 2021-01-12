@@ -7,7 +7,7 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 setup(
     name='intelab_python_sdk',
-    version='0.6.10',
+    version='0.6.11',
     url='https://github.com/zwwangoo/intelab-python-sdk',
     long_description=readme,
     long_description_content_type='text/x-rst',
