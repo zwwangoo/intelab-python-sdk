@@ -37,7 +37,7 @@ def run_shell(cmd, name='ffmpeg'):
     while return_code is None:
         # 这里会阻塞,所以不用获取所有的日志才返回，获取81个字节就可以返回了！
         line = ffmpeg_proc.stdout.readline(81)
-        log_buffer += line.decode()
+        log_buffer += line.decode('utf-8', 'ignore')
 
         if r'\n' in str(line):
             if 'Impossible to open' in log_buffer:
