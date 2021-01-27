@@ -37,7 +37,6 @@ class FfmpegRecordThread(threading.Thread):
         self.video_duration = video_duration
         self.file_name_out_list = os.path.join(self.out_file_dir, name + '.txt')
 
-
         self.shell_cmd_mp4 = (
             'ffmpeg '
             '-y '                                     # 覆盖输出文件
@@ -69,6 +68,13 @@ class FfmpegRecordThread(threading.Thread):
         self.ffmpeg_proc = None
         self.video_resolution = None
 
+    def kill(self):
+        try:
+            self.ffmpeg_proc.communicate(input='q'.encode(), timeout=2)
+        except Exception as e:
+            log.debug(e)
+            self.ffmpeg_proc.kill()
+
     def run(self):
         log.debug(self.shell_cmd_mp4)
         self.ffmpeg_proc = subprocess.Popen(
@@ -87,11 +93,9 @@ class FfmpegRecordThread(threading.Thread):
             # 换行打印日志
             if r'\n' in str(line) or r'\r' in str(line):
                 if 'Packet mismatch' in log_buffer:
-                    try:  # 发送退出信号，等待1s中
-                        self.ffmpeg_proc.communicate(input='q'.encode(), timeout=2)
-                    except Exception as e:
-                        log.debug(e)
-                        break
+                    self.kill()
+                    break
+
                 # 处理日志中\r的超过81字符的日志长度
                 log_buffer = log_buffer.split('\r')
                 if len(log_buffer) > 1:
