@@ -86,12 +86,14 @@ class DingTalkMessage(object):
 
         :param title: 消息标题
         :param text: 消息内容。支持简单的md语法。
-        :param: mobiles:
+        :param mobiles:
         :param at_all:
         :return:
         """
         if mobiles is None:
             mobiles = []
+        if mobiles:
+            text += '\n@' + '@'.join(mobiles)
 
         msg_dict = {
             "msgtype": "markdown",
@@ -105,8 +107,6 @@ class DingTalkMessage(object):
             }
         }
         return self._send(msg_dict)
-
-
 
     def _update_webhook(self):
         """
