@@ -74,16 +74,22 @@ class RFC5424LogFormatter(LogFormatter):
         "%(message)s"
     )
 
+    RFC5424_LOG_FORMAT_THREAD = (
+        "%(isotime)s | %(hostname)s | %(thread)d | %(threadName)s | "
+        "%(levelname)-8s | %(name)s:%(filename)s:%(lineno)d | "
+        "%(message)s"
+    )
+
     RFC5424_TIME_FORMAT = None
 
-    def __init__(self, service_name):
+    def __init__(self, service_name, thread=False):
         LogFormatter.__init__(
             self, service_name,
-            fmt=self.RFC5424_LOG_FORMAT,
+            fmt=self.RFC5424_LOG_FORMAT_THREAD if thread else self.RFC5424_LOG_FORMAT,
             datefmt=self.RFC5424_TIME_FORMAT)
 
 
-def log_init(name, debug=None, log_path=None, when='MIDNIGHT', **kwargs):
+def log_init(name, debug=None, log_path=None, when='MIDNIGHT', thread=False, **kwargs):
     """初始化配置logging
 
     :param debug: log message with level DEBUG or higher,
@@ -103,7 +109,7 @@ def log_init(name, debug=None, log_path=None, when='MIDNIGHT', **kwargs):
         >>> log.error('error')
         2019-12-16T17:48:02.338739-+08:00 | wen-work-pc | 25689 | test | ERROR   | root:<ipython-input-7-5bfd94e0c8ba>:1 | error
     """
-    rfc5424_formatter = RFC5424LogFormatter(name)
+    rfc5424_formatter = RFC5424LogFormatter(name, thread=thread)
     log.handlers = []
 
     stdout_handler = logging.StreamHandler(sys.stdout)
