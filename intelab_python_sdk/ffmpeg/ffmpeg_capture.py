@@ -20,7 +20,7 @@ def capture(stream_url, output_jpg, timeout=10, type='jpg'):
     shell_cmd = (
         'ffmpeg '
         '-y -rw_timeout {} '  # 设置超时时间10s
-        '-i {} '
+        '-i "{}" '
         '-ss 0 '
         '{} '
         '-vframes 1 '

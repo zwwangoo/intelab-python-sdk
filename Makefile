@@ -27,7 +27,7 @@ clean:
 	@find . -name '__pycache__' -print -exec rm -rf {} +
 	@echo 'Done [clean]'
 
-build:
+build: clean
 	@pip install 'twine>=1.5.0' wheel
 	@python setup.py sdist bdist_wheel
 	@twine upload dist/*
