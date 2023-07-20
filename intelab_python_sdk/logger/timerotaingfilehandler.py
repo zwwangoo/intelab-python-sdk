@@ -57,6 +57,8 @@ class MultiProcessSafeHandler(TimedRotatingFileHandler):
         if self.encoding is None:
             stream = open(self.current_file_name, self.mode)
         else:
+            # 修复PYTHON 3.11版本报错：LookupError: unknown encoding: locale
+            self.encoding = 'utf-8' if self.encoding == 'locale' else self.encoding
             stream = codecs.open(self.current_file_name,
                                  self.mode, self.encoding)
         return stream
