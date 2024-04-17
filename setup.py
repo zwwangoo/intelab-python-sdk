@@ -7,7 +7,7 @@ with open('README.rst', 'r', 'utf-8') as f:
 
 setup(
     name='tiny_python_sdk',
-    version='1.0.0',
+    version='1.0.1',
     url='https://github.com/zwwangoo/tiny-python-sdk',
     long_description=readme,
     long_description_content_type='text/x-rst',
