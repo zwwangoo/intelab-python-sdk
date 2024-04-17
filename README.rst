@@ -8,8 +8,6 @@ tiny-python-sdk
 
     $ pip install tiny-python-sdk
 
-项目改名：tiny-python-sdk
-------------------------
 
 v1.0.0 以前版本为 intelab-python-sdk
 
