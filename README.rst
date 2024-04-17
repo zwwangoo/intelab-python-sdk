@@ -1,4 +1,4 @@
-intelab-python-sdk
+tiny-python-sdk
 ==================
 
 安装
@@ -6,7 +6,13 @@ intelab-python-sdk
 
 .. code-block:: bash
 
-    $ pip install intelab-python-sdk
+    $ pip install tiny-python-sdk
+
+项目改名：tiny-python-sdk
+------------------------
+
+v1.0.0 以前版本为 intelab-python-sdk
+
 
 FFmpeg常用工具(V0.6.0)
 ------------------------
@@ -29,10 +35,10 @@ CPU资源监控脚本(V0.5.0)
 
 协助自己在服务器端监控进程的使用资源情况。每一秒打印一次。
 
-Usag::
-    $ intelab_python_sdk ffmpeg
+Usage::
+    $ tiny_python_sdk ffmpeg
     PID    CPU    MEM    MCPU
-    2243   0.1    0.1    0.1    intelab_python_sdk ffmpeg
+    2243   0.1    0.1    0.1    tiny_python_sdk ffmpeg
 
 
 钉钉群机器人信息发送(V0.4.0)
@@ -43,7 +49,7 @@ Usag::
 
 Usage::
 
-    >>> from intelab_python_sdk.dingtalk import DingTalkMessage
+    >>> from tiny_python_sdk.dingtalk import DingTalkMessage
     >>> dingtalk = DingTalkMessage(webhook, secret)
     >>> dingtalk.send_text('这是文本信息', mobiles=['15131601294'], at_all=False)  # mobiles是at群中的人(手机号),at_all为True是at全体
     >>> dingtalk.send_link('这是标题', '这是内容', 'https://www.baidu.com')
@@ -56,7 +62,7 @@ Usage::
 
 Usage::
 
-    >>> from intelab_python_sdk.email import EMailMessage
+    >>> from tiny_python_sdk.email import EMailMessage
     >>> email = EMailMessage('w_angzhiwen@163.com', '发送者', 'xxxxx')  # 'xxxx' 用户密码
     >>> msg = email.create(['zw.wang@ilabservice.com'], '你好，我是机器人', '无主题')  # 创建邮件内容
     >>> msg = email.send(['zw.wang@ilabservice.com'], msg)  # 发送
@@ -70,7 +76,7 @@ logging 模块(V0.3.4)
 
 Usage::
 
-    >>> from intelab_python_sdk.logger import log_init
+    >>> from tiny_python_sdk.logger import log_init
     >>> # 初始化配置
     >>> log = log_init('test', debug=True, log_path='./logs')
     >>> log.info('info')
@@ -105,7 +111,7 @@ TimedRotatingFileHandler的使用说明：
 
 Usage::
 
-    >>> from intelab_python_sdk.cache import FileSystemCache
+    >>> from tiny_python_sdk.cache import FileSystemCache
     >>> from datetime import datetime
     >>> cache = FileSystemCache('.cache')
     >>> cache.set('12', datetime.now())

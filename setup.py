@@ -6,9 +6,9 @@ with open('README.rst', 'r', 'utf-8') as f:
     readme = f.read()
 
 setup(
-    name='intelab_python_sdk',
-    version='0.7.4',
-    url='https://github.com/zwwangoo/intelab-python-sdk',
+    name='tiny_python_sdk',
+    version='1.0.0',
+    url='https://github.com/zwwangoo/tiny-python-sdk',
     long_description=readme,
     long_description_content_type='text/x-rst',
     author='zwwangoo',
@@ -25,7 +25,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'intelab_python_sdk = intelab_python_sdk.helper.cpu:run_print'
+            'tiny_python_sdk = tiny_python_sdk.helper.cpu:run_print'
         ]
     }
 

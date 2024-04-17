@@ -99,7 +99,7 @@ def log_init(name, debug=None, log_path=None, when='MIDNIGHT', thread=False, **k
 
     Usage::
 
-        >>> from intelab_python_sdk.logger import log_init
+        >>> from tiny_python_sdk.logger import log_init
         >>> # 初始化配置
         >>> log = log_init('test', debug=True, log_path='./logs')
         >>> log.info('info')

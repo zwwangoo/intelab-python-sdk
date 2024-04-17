@@ -19,4 +19,4 @@ htmlcov/
 *,cover
 *.db
 
-/intelab_python_sdk/logger/*.log.*
+/tiny_python_sdk/logger/*.log.*

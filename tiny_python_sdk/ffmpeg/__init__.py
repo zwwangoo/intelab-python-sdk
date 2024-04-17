@@ -2,7 +2,7 @@ import subprocess
 import errno
 
 try:
-    from intelab_python_sdk.logger import log
+    from tiny_python_sdk.logger import log
 except ImportError:
     import logging
     log = logging.getLogger('ffmpeg')

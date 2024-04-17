@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'intelab-python-sdk'
+project = 'tiny-python-sdk'
 copyright = '2019, ilabService'
 author = 'ilabService'
 

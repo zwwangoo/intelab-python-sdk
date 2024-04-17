@@ -9,7 +9,7 @@ class FileSystemCache(object):
 
     Usage::
 
-        >>> from intelab_python_sdk.cache import FileSystemCache
+        >>> from tiny_python_sdk.cache import FileSystemCache
         >>> from datetime import datetime
         >>> cache = FileSystemCache('.cache')
         >>> cache.set('12', datetime.now())

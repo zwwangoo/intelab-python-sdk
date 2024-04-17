@@ -5,10 +5,11 @@ from email.mime.text import MIMEText
 from email.utils import formataddr
 import smtplib
 
-from intelab_python_sdk.logger import log
+from tiny_python_sdk.logger import log
 
 SMTP_SERVER = {
     '163.com': ('smtp.163.com', 465),
+    '126.com': ('smtp.126.com', 465),
     'qq.com': ('smtp.qq.com', 465),
     'ilabservice.com': ('smtp.qiye.aliyun.com', 465)
 }
