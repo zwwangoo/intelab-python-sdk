@@ -1,9 +1,9 @@
-.. intelab-python-sdk documentation master file, created by
+.. tiny-python-sdk documentation master file, created by
    sphinx-quickstart on Thu Dec 19 11:44:07 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-intelab-python-sdk
+tiny-python-sdk
 ==============================================
 
 安装
@@ -11,7 +11,7 @@ intelab-python-sdk
 
 .. code-block:: bash
 
-    $ pip install intelab-python-sdk
+    $ pip install tiny-python-sdk
 
 钉钉群机器人信息发送(V0.4.0)
 -----------------------------
@@ -21,7 +21,7 @@ intelab-python-sdk
 
 Usage::
 
-    >>> from intelab_python_sdk.dingtalk import DingTalkMessage
+    >>> from tiny_python_sdk.dingtalk import DingTalkMessage
     >>> dingtalk = DingTalkMessage(webhook, secret)
     >>> dingtalk.send_text('这是文本信息', mobiles=['15131601294'], at_all=False)  # mobiles是at群中的人(手机号),at_all为True是at全体
     >>> dingtalk.send_link('这是标题', '这是内容', 'https://www.baidu.com')
@@ -37,7 +37,7 @@ Usage::
 
 Usage::
 
-    >>> from intelab_python_sdk.email import EMailMessage
+    >>> from tiny_python_sdk.email import EMailMessage
     >>> email = EMailMessage('w_angzhiwen@163.com', '发送者', 'xxxxx')  # 'xxxx' 用户密码
     >>> msg = email.create(['zw.wang@ilabservice.com'], '你好，我是机器人', '无主题')  # 创建邮件内容
     >>> msg = email.send(['zw.wang@ilabservice.com'], msg)  # 发送
@@ -48,7 +48,7 @@ logging 模块(V0.3.0)
 
 Usage::
 
-    >>> from intelab_python_sdk.logger import log_init
+    >>> from tiny_python_sdk.logger import log_init
     >>> # 初始化配置
     >>> log = log_init('test', debug=True, log_path='./logs')
     >>> log.info('info')
@@ -75,7 +75,7 @@ Usage::
 
 Usage::
 
-    >>> from intelab_python_sdk.cache import FileSystemCache
+    >>> from tiny_python_sdk.cache import FileSystemCache
     >>> from datetime import datetime
     >>> cache = FileSystemCache('.cache')
     >>> cache.set('12', datetime.now())

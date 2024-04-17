@@ -3,5 +3,5 @@
 Logger
 ======
 
-.. automodule:: intelab_python_sdk.logger.__init__
+.. automodule:: tiny_python_sdk.logger.__init__
    :members:
